@@ -38,3 +38,38 @@ func countTriplets(arr []int) int {
 	}
 	return 0
 }
+
+//https://practice.geeksforgeeks.org/problems/missing-number-in-array1416/1
+func missingNums(arr []int, size int) int {
+	sort.Ints(arr)
+	for i, v := range arr {
+		if arr[i+1]-v > 1 {
+			return v + 1
+		}
+	}
+	return -1
+}
+
+//https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays-1587115620/1
+func mergeArr(arr1 []int, arr2 []int) []int {
+	out := []int{}
+	pos1 := 0
+	pos2 := 0
+
+	for pos1 < len(arr1) && pos2 < len(arr2) {
+		if arr1[pos1] < arr2[pos2] {
+			out = append(out, arr1[pos1])
+			pos1++
+		} else {
+			out = append(out, arr2[pos2])
+			pos2++
+		}
+	}
+	for ; pos1 < len(arr1); pos1++ {
+		out = append(out, arr1[pos1])
+	}
+	for ; pos2 < len(arr2); pos2++ {
+		out = append(out, arr2[pos2])
+	}
+	return out
+}

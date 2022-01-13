@@ -2,6 +2,7 @@ package arrays
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -42,6 +43,48 @@ func TestCountTriplets(t *testing.T) {
 		t.Run(testName, func(t *testing.T) {
 			ans := countTriplets(tt.arr)
 			if ans != tt.want {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestMissingNums(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		size int
+		want int
+	}{
+		{[]int{1, 2, 3, 5}, 5, 4},
+		{[]int{6, 1, 2, 8, 3, 4, 7, 10, 5}, 10, 9},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d,%d", tt.arr, tt.size)
+		t.Run(testName, func(t *testing.T) {
+			ans := missingNums(tt.arr, tt.size)
+			if ans != tt.want {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestMergeArr(t *testing.T) {
+	var tests = []struct {
+		arr1 []int
+		arr2 []int
+		want []int
+	}{
+		{[]int{1, 3, 5, 7}, []int{0, 2, 6, 8, 9}, []int{0, 1, 2, 3, 5, 6, 7, 8, 9}},
+		{[]int{5, 10}, []int{12, 18, 20}, []int{5, 10, 12, 18, 20}},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d,%d", tt.arr1, tt.arr2)
+		t.Run(testName, func(t *testing.T) {
+			ans := mergeArr(tt.arr1, tt.arr2)
+			if !reflect.DeepEqual(ans, tt.want) {
 				t.Errorf("Got: %d, want: %d", ans, tt.want)
 			}
 		})
