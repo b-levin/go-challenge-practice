@@ -73,3 +73,29 @@ func mergeArr(arr1 []int, arr2 []int) []int {
 	}
 	return out
 }
+
+//https://practice.geeksforgeeks.org/problems/-rearrange-array-alternately-1587115620/1
+func reArrangeArrAlt(arr []int) []int {
+	out := []int{}
+
+	i := 0
+	j := len(arr) - 1
+
+	for i+1 != j && i != j {
+		out = append(out, arr[j])
+		out = append(out, arr[i])
+		i++
+		j--
+	}
+
+	if i == j {
+		out = append(out, arr[i])
+	}
+
+	if i+1 == j {
+		out = append(out, arr[j])
+		out = append(out, arr[i])
+	}
+
+	return out
+}
