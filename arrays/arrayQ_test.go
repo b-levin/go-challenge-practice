@@ -110,3 +110,64 @@ func TestReArrangeArrAlt(t *testing.T) {
 		})
 	}
 }
+
+func TestCountInversions(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		want int
+	}{
+		{[]int{2, 4, 1, 3, 5}, 3},
+		{[]int{2, 3, 4, 5, 6}, 0},
+		{[]int{10, 10, 10}, 0},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d", tt.arr)
+		t.Run(testName, func(t *testing.T) {
+			ans := countInversions(tt.arr)
+			if ans != tt.want {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestSort012(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		want []int
+	}{
+		{[]int{0, 2, 1, 2, 0}, []int{0, 0, 1, 2, 2}},
+		{[]int{0, 1, 0}, []int{0, 0, 1}},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d", tt.arr)
+		t.Run(testName, func(t *testing.T) {
+			ans := sort012(tt.arr)
+			if !reflect.DeepEqual(ans, tt.want) {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestEquilibriumPoint(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		want int
+	}{
+		{[]int{1, 3, 5, 2, 2}, 3},
+		{[]int{1}, 1},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d", tt.arr)
+		t.Run(testName, func(t *testing.T) {
+			ans := equilibriumPoint(tt.arr)
+			if ans != tt.want {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
