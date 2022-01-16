@@ -171,3 +171,23 @@ func TestEquilibriumPoint(t *testing.T) {
 		})
 	}
 }
+
+func TestLeaders(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		want []int
+	}{
+		{[]int{16, 17, 4, 3, 5, 2}, []int{17, 5, 2}},
+		{[]int{1, 2, 3, 4, 0}, []int{4, 0}},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d", tt.arr)
+		t.Run(testName, func(t *testing.T) {
+			ans := leaders(tt.arr)
+			if !reflect.DeepEqual(ans, tt.want) {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}

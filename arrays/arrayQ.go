@@ -168,3 +168,21 @@ func sumArr(arr []int) int {
 	}
 	return out
 }
+
+//https://practice.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1
+func leaders(arr []int) []int {
+	vals := []int{}
+	highNum := arr[len(arr)-1]
+	vals = append(vals, highNum)
+	for i := len(arr) - 2; i >= 0; i-- {
+		if arr[i] > highNum {
+			highNum = arr[i]
+			vals = append(vals, highNum)
+		}
+	}
+	out := []int{}
+	for i := len(vals) - 1; i >= 0; i-- {
+		out = append(out, vals[i])
+	}
+	return out
+}
