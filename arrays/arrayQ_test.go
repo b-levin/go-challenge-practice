@@ -191,3 +191,45 @@ func TestLeaders(t *testing.T) {
 		})
 	}
 }
+
+func TestMinPlatform(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		dep  []int
+		want int
+	}{
+		{[]int{900, 940, 950, 1100, 1500, 1800}, []int{910, 1200, 1120, 1130, 1900, 2000}, 3},
+		{[]int{900, 1100, 1235}, []int{1000, 1200, 1240}, 1},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d,%d", tt.arr, tt.dep)
+		t.Run(testName, func(t *testing.T) {
+			ans := minPlatforms(tt.arr, tt.dep)
+			if ans != tt.want {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestReverseGroups(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		flip int
+		want []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, 3, []int{3, 2, 1, 5, 4}},
+		{[]int{5, 6, 8, 9}, 3, []int{8, 6, 5, 9}},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d,%d", tt.arr, tt.flip)
+		t.Run(testName, func(t *testing.T) {
+			ans := reverseGroups(tt.arr, tt.flip)
+			if !reflect.DeepEqual(ans, tt.want) {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}

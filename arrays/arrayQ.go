@@ -4,6 +4,10 @@ import (
 	"sort"
 )
 
+/**
+TODO: tie together with cobra??
+*/
+
 //https://practice.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1
 func subArrSum(arr []int, sum int) (int, int) {
 	for i := range arr {
@@ -183,6 +187,44 @@ func leaders(arr []int) []int {
 	out := []int{}
 	for i := len(vals) - 1; i >= 0; i-- {
 		out = append(out, vals[i])
+	}
+	return out
+}
+
+//https://practice.geeksforgeeks.org/problems/minimum-platforms-1587115620/1
+func minPlatforms(arr []int, dep []int) int {
+	maxPlats := 1
+	platCnt := 1
+	for i := 0; i < len(arr)-1; i++ {
+		if dep[i] > arr[i+1] {
+			platCnt++
+		} else {
+			if platCnt > maxPlats {
+				maxPlats = platCnt
+				platCnt = 1
+			}
+		}
+	}
+	return maxPlats
+}
+
+//https://practice.geeksforgeeks.org/problems/reverse-array-in-groups0255/1
+func reverseGroups(arr []int, subCount int) []int {
+	out := []int{}
+	curFlipPos := subCount - 1
+	for curFlipPos <= len(arr)-1 {
+		for i := curFlipPos; i > curFlipPos-subCount; i-- {
+			out = append(out, arr[i])
+		}
+		curFlipPos += subCount
+	}
+	//fill out remaining elements
+	if len(out) != len(arr) {
+		i := len(arr) - 1
+		for len(out) != len(arr) {
+			out = append(out, arr[i])
+			i--
+		}
 	}
 	return out
 }
