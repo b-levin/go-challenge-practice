@@ -228,3 +228,38 @@ func reverseGroups(arr []int, subCount int) []int {
 	}
 	return out
 }
+
+//https://practice.geeksforgeeks.org/problems/kth-smallest-element5635/1
+func kSmallest(arr []int, pos int) int {
+	sort.Ints(arr)
+	return arr[pos-1]
+}
+
+//https://practice.geeksforgeeks.org/problems/trapping-rain-water-1587115621/1
+func trapRainWater(arr []int) int {
+	total := 0
+	lMax := 0
+	rMax := 0
+	lPos := 0
+	rPos := len(arr) - 1
+	for lPos < rPos {
+		if arr[lPos] < arr[rPos] {
+			lMax = max(lMax, arr[lPos])
+			total += lMax - arr[lPos]
+			lPos++
+		} else {
+			rMax = max(rMax, arr[rPos])
+			total += rMax - arr[rPos]
+			rPos--
+		}
+	}
+	return total
+}
+
+func max(i int, j int) int {
+	if i > j {
+		return i
+	} else {
+		return j
+	}
+}

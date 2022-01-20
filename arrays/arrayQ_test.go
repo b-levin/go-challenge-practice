@@ -233,3 +233,45 @@ func TestReverseGroups(t *testing.T) {
 		})
 	}
 }
+
+func TestKSmallest(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		pos  int
+		want int
+	}{
+		{[]int{7, 10, 4, 3, 20, 15}, 3, 7},
+		{[]int{7, 10, 4, 20, 15}, 4, 15},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d,%d", tt.arr, tt.pos)
+		t.Run(testName, func(t *testing.T) {
+			ans := kSmallest(tt.arr, tt.pos)
+			if ans != tt.want {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestTrapRainWater(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		want int
+	}{
+		{[]int{3, 0, 0, 2, 0, 4}, 10},
+		{[]int{7, 4, 0, 9}, 10},
+		{[]int{6, 6, 9}, 0},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d", tt.arr)
+		t.Run(testName, func(t *testing.T) {
+			ans := trapRainWater(tt.arr)
+			if ans != tt.want {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
