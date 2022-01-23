@@ -275,3 +275,44 @@ func TestTrapRainWater(t *testing.T) {
 		})
 	}
 }
+
+func TestPyTriplet(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		want bool
+	}{
+		{[]int{3, 2, 4, 6, 5}, true},
+		{[]int{3, 5, 8}, false},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d", tt.arr)
+		t.Run(testName, func(t *testing.T) {
+			ans := pyTriplet(tt.arr)
+			if ans != tt.want {
+				t.Errorf("Got: %t, want: %t", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestChocolateDist(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		m    int
+		want int
+	}{
+		{[]int{3, 4, 1, 9, 56, 7, 9, 12}, 5, 6},
+		{[]int{7, 3, 2, 4, 9, 12, 56}, 3, 2},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d", tt.arr)
+		t.Run(testName, func(t *testing.T) {
+			ans := chocolateDist(tt.arr, tt.m)
+			if ans != tt.want {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}

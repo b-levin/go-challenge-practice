@@ -263,3 +263,34 @@ func max(i int, j int) int {
 		return j
 	}
 }
+
+//https://practice.geeksforgeeks.org/problems/pythagorean-triplet3018/1
+func pyTriplet(arr []int) bool {
+	sort.Ints(arr)
+	if len(arr) < 3 {
+		return false
+	}
+	for i := 0; i < len(arr)-3; i++ {
+		if isPythag(arr[i], arr[i+1], arr[i+2]) {
+			return true
+		}
+	}
+	return false
+}
+
+func isPythag(a int, b int, c int) bool {
+	return (a*a + b*b) == c*c
+}
+
+//https://practice.geeksforgeeks.org/problems/chocolate-distribution-problem3825/1
+func chocolateDist(arr []int, m int) int {
+	sort.Ints(arr)
+	out := arr[m-1] - arr[0]
+	for i := 1; i < len(arr)-m; i++ {
+		diff := arr[i+m-1] - arr[i]
+		if out > diff {
+			out = diff
+		}
+	}
+	return out
+}
