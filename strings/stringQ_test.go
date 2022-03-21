@@ -24,3 +24,43 @@ func TestReserveWords(t *testing.T) {
 		})
 	}
 }
+
+func TestLongestPalindrome(t *testing.T) {
+	var tests = []struct {
+		word string
+		want string
+	}{
+		{"aaaabbaa", "aabbaa"},
+		{"abc", "a"},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf(tt.word)
+		t.Run(testName, func(t *testing.T) {
+			ans := longestPalindrome(tt.word)
+			if ans != tt.want {
+				t.Errorf("Got %s, want: %s", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestRomanNumToInt(t *testing.T) {
+	var tests = []struct {
+		word string
+		want int
+	}{
+		{"V", 5},
+		{"III", 3},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf(tt.word)
+		t.Run(testName, func(t *testing.T) {
+			ans := romanNumToInt(tt.word)
+			if ans != tt.want {
+				t.Errorf("Got %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
