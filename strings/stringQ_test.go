@@ -64,3 +64,43 @@ func TestRomanNumToInt(t *testing.T) {
 		})
 	}
 }
+
+func TestRemoveDup(t *testing.T) {
+	var tests = []struct {
+		word string
+		want string
+	}{
+		{"zvvo", "zvo"},
+		{"gfg", "gf"},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf(tt.word)
+		t.Run(testName, func(t *testing.T) {
+			ans := removeDup(tt.word)
+			if ans != tt.want {
+				t.Errorf("Got %s, want: %s", ans, tt.want)
+			}
+		})
+	}
+}
+
+func TestMakePalindrome(t *testing.T) {
+	var tests = []struct {
+		word string
+		want int
+	}{
+		{"abcd", 3},
+		{"aa", 0},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf(tt.word)
+		t.Run(testName, func(t *testing.T) {
+			ans := makePalindrome(tt.word)
+			if ans != tt.want {
+				t.Errorf("Got %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}

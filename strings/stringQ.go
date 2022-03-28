@@ -81,3 +81,27 @@ func romanNumToInt(number string) int {
 	}
 	return out
 }
+
+//https://practice.geeksforgeeks.org/problems/remove-duplicates3034/1
+func removeDup(word string) string {
+	contains := make(map[rune]bool)
+	out := ""
+	for _, r := range word {
+		if !contains[r] {
+			contains[r] = true
+			out += string(r)
+		}
+	}
+	return out
+}
+
+//https://practice.geeksforgeeks.org/problems/form-a-palindrome1455/1
+func makePalindrome(word string) int {
+	if reverse(word) == word {
+		//already a palindrome
+		return 0
+	} else {
+		//not a palindrome (fun part!)
+		return -1
+	}
+}
