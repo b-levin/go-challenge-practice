@@ -31,14 +31,23 @@ func (s *Stack) Push(val rune) {
 	*s = append(*s, val)
 }
 
-func (s *Stack) Pop() (rune, bool) {
+func (s *Stack) peek() rune {
 	if s.IsEmpty() {
-		return -1, false
+		return -1
+	} else {
+		index := len(*s) - 1
+		return (*s)[index]
+	}
+}
+
+func (s *Stack) Pop() rune {
+	if s.IsEmpty() {
+		return -1
 	} else {
 		index := len(*s) - 1
 		element := (*s)[index]
 		*s = (*s)[:index]
-		return element, true
+		return element
 	}
 }
 
@@ -102,6 +111,18 @@ func makePalindrome(word string) int {
 		return 0
 	} else {
 		//not a palindrome (fun part!)
-		return -1
+		var wordStack Stack
+		for _, r := range word {
+			if !wordStack.IsEmpty() && wordStack.peek() == r {
+				wordStack.Pop()
+			} else {
+				wordStack.Push(r)
+			}
+		}
+		if wordStack.Size() == len(word) {
+			return wordStack.Size() - 1
+		} else {
+			return wordStack.Size()
+		}
 	}
 }
