@@ -34,3 +34,23 @@ func CommonEle(arr1 []int, arr2 []int) []int {
 	}
 	return out
 }
+
+//https://practice.geeksforgeeks.org/problems/first-element-to-occur-k-times5150/1
+func FirstKTimes(arr []int, k int) int {
+	//sort arr
+	sort.Ints(arr)
+	countMap := make(map[int]int)
+	for _, key := range arr {
+		if v, prs := countMap[key]; prs {
+			if v++; v == k {
+				return key
+			} else {
+				countMap[key] = v
+			}
+		} else {
+			countMap[key] = 1
+		}
+	}
+	// no elements occuring k times
+	return -1
+}

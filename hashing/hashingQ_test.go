@@ -47,3 +47,24 @@ func TestCommonEle(t *testing.T) {
 		})
 	}
 }
+
+func TestFirstKTimes(t *testing.T) {
+	var tests = []struct {
+		arr  []int
+		k    int
+		want int
+	}{
+		{[]int{1, 7, 4, 3, 4, 8, 7}, 2, 4},
+		{[]int{3, 4, 6, 5, 6, 11, 9, 11, 11, 9, 6}, 3, 6},
+	}
+
+	for _, tt := range tests {
+		testName := fmt.Sprintf("%d, %d", tt.arr, tt.k)
+		t.Run(testName, func(t *testing.T) {
+			ans := FirstKTimes(tt.arr, tt.k)
+			if ans != tt.want {
+				t.Errorf("Got: %d, want: %d", ans, tt.want)
+			}
+		})
+	}
+}
